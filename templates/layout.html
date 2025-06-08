@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mohamed Esmail | AI Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --main-color: #38bdf8;
+      --bg-dark: #0f172a;
+      --bg-light: #1e293b;
+      --text-light: #e2e8f0;
+      --text-accent: #facc15;
+    }
+    body {
+      margin: 0;
+      font-family: 'Outfit', sans-serif;
+      background: linear-gradient(to bottom, #0f172a, #1e293b);
+      color: var(--text-light);
+    }
+    header {
+      text-align: center;
+      padding: 40px 20px 20px;
+    }
+    header img.logo {
+      width: 180px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #38bdf8aa;
+      transition: transform 0.3s ease;
+    }
+    header img.logo:hover {
+      transform: scale(1.08);
+    }
+    header h1 {
+      font-size: 36px;
+      margin: 20px 0 10px;
+      color: var(--main-color);
+    }
+    header p {
+      font-size: 18px;
+      color: #cbd5e1;
+    }
+    .logout {
+      text-align: right;
+      padding: 10px 20px;
+    }
+    .logout a {
+      color: #f87171;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+    h2 {
+      font-size: 24px;
+      border-bottom: 2px solid var(--main-color);
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+    }
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .project {
+      background: var(--bg-light);
+      border-radius: 12px;
+      padding: 15px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    }
+    .project:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    }
+    .project img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .project h3 {
+      color: var(--text-accent);
+      margin: 0 0 5px;
+    }
+    .project a {
+      color: var(--main-color);
+      text-decoration: none;
+      font-weight: bold;
+    }
+    form input, form textarea, form button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    form input, form textarea {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    form button {
+      background: var(--main-color);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    form button:hover {
+      background: #0ea5e9;
+    }
+    a.btn-delete {
+      color: red;
+      text-decoration: none;
+    }
+    @media (max-width: 600px) {
+      header h1 { font-size: 24px; }
+      header img.logo { width: 140px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo" />
+    <h1>Mohamed Esmail</h1>
+    <p>Artificial Intelligence Engineer · Full Stack Developer · Windows App Builder</p>
+    <p>
+      <a href="{{ url_for('contact') }}" style="color: #facc15; font-weight: bold;">📬 Contact</a> |
+      <a href="{{ url_for('cv') }}" style="color: #facc15; font-weight: bold;">📄 View CV</a>
+    </p>
+  </header>
+
+  {% if session.get('logged_in') %}
+  <div class="logout">
+    <a href="{{ url_for('logout') }}">Logout</a>
+  </div>
+  {% endif %}
+
+  <div class="container">
+    {% block content %}{% endblock %}
+  </div>
+
+</body>
+</html>

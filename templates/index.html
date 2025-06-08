@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2>About Me</h2>
+<p style="font-size: 18px; line-height: 1.6;">{{ about }}</p>
+
+<h2>My Projects</h2>
+<div class="project-grid">
+  {% for p in projects %}
+    <div class="project">
+      <h3>{{ p[1] }}</h3>
+      <p>{{ p[2] }}</p>
+      {% if p[3] %}
+        <img src="{{ url_for('static', filename='uploads/' ~ p[3]) }}" alt="{{ p[1] }}">
+      {% endif %}
+      {% if p[4] %}
+        <p><a href="{{ p[4] }}" target="_blank">View on GitHub</a></p>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}
